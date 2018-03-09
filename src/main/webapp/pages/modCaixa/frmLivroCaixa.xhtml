@@ -93,31 +93,31 @@
 		<!-- DIALOG NOVO MOVIMENTO -->
 		<p:dialog widgetVar="dlg_NovoMovimento" closable="false"
 			draggable="false" resizable="false" header="Dados Lançamento"
-			modal="true">
+			modal="true" focus="id_conta">
 
-			<h:panelGrid id="pnnovo" columns="1" border="1" cellspacing="10">
+			<h:panelGrid id="pnnovo" columns="2" class="ui-g" >
 
 
-				<!-- Data -->
-				<h:outputText value="Data" for="edt_data" />
-				<h:inputText id="edt_data" value="#{caixaMB.caixa.data}" size="30"
-					title="Informe a data do lançamento.">
-					<p:tooltip id="toolTipFocus_data" for="edt_data" showEvent="focus"
-						hideEvent="blur" />
-				</h:inputText>
-				
-				
+
 				<!-- Nome da Conta -->
-				<h:outputLabel for="id_conta" value="Conta" />
+				<h:outputLabel />
+				<h:outputLabel for="id_conta" value="Contas" />
 				<p:selectOneMenu id="id_conta" value="#{caixaMB.caixa.conta}">
 					<f:selectItem itemLabel="Selecione" itemValue="" />
-					<f:selectItems value="#{contaMB.nomeConta}" />
+					<f:selectItems value="#{contaMB.nomeConta}"  />
 
 				</p:selectOneMenu>
 
 
+				<h:outputText value="Data" for="edt_data" />
+				<p:inputText id="edt_data" value="#{caixaMB.caixa.data}" size="20"
+					title="Informe a data do lançamento.">
+					<p:tooltip id="toolTipFocus_data" for="edt_data" showEvent="focus"
+						hideEvent="blur" />
+				</p:inputText>
 
-				<!-- Tipo -->
+
+
 				<p:outputLabel value="Tipo" />
 				<p:selectOneMenu id="id_tipo" value="#{caixaMB.caixa.tipo}"
 					style="width:125px" required="true"
@@ -127,24 +127,25 @@
 					<f:selectItem itemLabel="DEBITO" itemValue="D" />
 				</p:selectOneMenu>
 
-				<!-- Fluxo -->
+
 				<p:outputLabel for="fluxo" value="Fluxos de Caixa " />
 				<p:selectOneMenu id="fluxo" value="#{caixaMB.caixa.fluxocaixa}">
 					<f:selectItem itemLabel="Selecione" itemValue="" />
 					<f:selectItems value="#{fluxoMB.fluxoNome}" />
 				</p:selectOneMenu>
 
-				<!-- Descricao -->
+
 				<h:outputText value="Descrição" for="edt_desc" />
-				<h:inputText id="edt_desc" value="#{caixaMB.caixa.descricao}"
-					size="30" title="Informe a descrição do lançamento.">
+				<p:inputText id="edt_desc" value="#{caixaMB.caixa.descricao}"
+					size="50" title="Informe a descrição do lançamento.">
 					<p:tooltip id="toolTipFocus_desc" for="edt_desc" showEvent="focus"
 						hideEvent="blur" />
-				</h:inputText>
 
-				<!-- Valor -->
+				</p:inputText>
+
+
 				<h:outputText value="Valor" for="edt_val" />
-				<h:inputText id="edt_val" value="#{caixaMB.caixa.valor}" size="30" />
+				<p:inputText id="edt_val" value="#{caixaMB.caixa.valor}" size="20" />
 
 			</h:panelGrid>
 			<h:panelGrid columns="2">

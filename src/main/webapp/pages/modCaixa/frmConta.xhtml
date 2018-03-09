@@ -109,13 +109,13 @@
 				<p:selectOneMenu id="id_banco" value="#{contaMB.conta.nomeBanco}" >
 					<f:selectItem itemLabel="Selecione" itemValue="" />
 					<f:selectItems value="#{bancoMB.nomeBanco}"  />
-				<p:ajax event="change" update="edt_numbanco"/>
+				
 				</p:selectOneMenu>
 
 
 				<!-- Numero do Banco -->
 
-				<p:inputText id="edt_numbanco" value="#{bancoMB.pegaNumBanco()}" />
+				<!-- <p:inputText id="edt_numbanco"  /> -->
 
 
 				<!-- Numero da Agencia -->

@@ -4,10 +4,11 @@ html {
 	background-color: #f1f1f1;
 }
 
+
 /* CENTRALIZA UM OBJETO NA TELA */
 .centrotela {
-	width: 300px;
-	height: 300px;
+	width: 200px;
+	height: 200px;
 	position: absolute;
 	top: 50%;
 	left: 50%;

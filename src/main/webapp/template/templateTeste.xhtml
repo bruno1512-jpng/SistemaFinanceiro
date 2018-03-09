@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Administração do Sistema</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<!-- define o arquivo JS -->
+	<h:outputScript library="js" name="script.js" target="head" />
+
+	<!-- define o arquivo CSS -->
+	<h:outputStylesheet library="css" name="estilos.css" />
+
+</h:head>
+
+<!-- Template -->
+<h:body>
+
+	<h:form id="mainContent">
+		
+			<p:growl id="msgs" showDetail="true" />
+
+			<p:layout fullPage="true">
+
+				<!-- INICIA O LAYOUT -->
+				<!-- NORT -->
+				<p:layoutUnit position="north" size="60" header="Top"
+					resizable="true" closable="true">
+					<h:outputText value="Sistema Financeiro" />
+				</p:layoutUnit>
+
+				<!-- ESQUERDA -->
+				<p:layoutUnit position="west" size="200" header="Menu"
+					>
+					<p:accordionPanel >
+						<p:tab title="Home">
+							<h:panelGrid columns="1">
+								<p:link value="DashBoard" outcome="/pages/home.xhtml">
+								</p:link>
+							</h:panelGrid>
+						</p:tab>
+						<p:tab title="Caixa">
+							<h:panelGrid columns="1">
+								<p:link value="Novo Movimento"
+									outcome="/pages/modCaixa/frmLivroCaixa.xhtml">
+									<!-- <f:param name="nomeParametro" value="10" /> -->
+								</p:link>
+							</h:panelGrid>
+
+							<h:panelGrid columns="1">
+								<p:link value="Adicionar Conta" />
+							</h:panelGrid>
+
+							<h:panelGrid columns="1">
+								<p:link value="Adicionar Fluxo" />
+							</h:panelGrid>
+
+							<h:panelGrid columns="1">
+								<p:link value="Adicionar Banco" />
+							</h:panelGrid>
+
+
+
+						</p:tab>
+						<p:tab title="Contas a Pagar">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:outputText value="Contas a Pagar" />
+							</h:panelGrid>
+						</p:tab>
+
+						<p:tab title="Relatorios">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:outputText value="Relatorios" />
+							</h:panelGrid>
+						</p:tab>
+
+						<p:tab title="Utilitarios">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h:outputText value="Utilitarios" />
+							</h:panelGrid>
+						</p:tab>
+					</p:accordionPanel>
+				</p:layoutUnit>
+
+				<p:layoutUnit position="center">
+							<ui:insert name="content" />
+				</p:layoutUnit>
+
+				<!-- SUL -->
+				<p:layoutUnit position="south" size="60" >
+					<h:outputText value="SISFIN - Sistema Financeiro" />
+				</p:layoutUnit>
+
+			</p:layout>
+</h:form>
+		
+</h:body>
+</html>
