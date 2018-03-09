@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/template/templatePadrao.xhtml">
+
+
+
+	<ui:define name="content">
+		<p class="titulo">Conta</p>
+
+
+		<p:growl id="growl" life="5000" />
+
+		<p:dataTable id="tbconta" var="contas" rowIndexVar="item"
+			emptyMessage="Sem dados na tabela." value="#{contaMB.conta_lista}"
+			paginator="true" paginatorPosition="top" rows="10"
+			sortBy="#{contas.tipoConta}" expandableRowGroups="true">
+
+			<f:facet name="header">Lista de Contas</f:facet>
+
+			<p:column headerText="Codigo" width="30">
+				<h:outputText value="#{contas.id}" />
+			</p:column>
+
+
+			<p:column headerText="Numero Banco" width="100">
+				<h:outputText value="#{contas.numBanco}" />
+			</p:column>
+
+			<p:column headerText="Banco" width="300">
+				<h:outputText value="#{contas.nomeBanco}" />
+			</p:column>
+
+			<p:column headerText="Agencia" width="100">
+				<h:outputText value="#{contas.numAgencia}" />
+			</p:column>
+
+			<p:column headerText="Conta" width="100">
+				<h:outputText value="#{contas.numConta}" />
+			</p:column>
+
+			<p:column headerText="Tipo" width="100"
+				style="#{contas.tipoConta == 'CAIXA' ? 'background-color: #b0e0a3; color:black ; font-weight: bold ':'' or contas.tipoConta == 'BANCO' ? 'background-color: #f4a4a4; color:black; font-weight: bold' :''}">
+				<h:outputText value="#{contas.tipoConta}" />
+			</p:column>
+
+
+			<!-- ACOES DA LISTA -->
+			<p:column width="55" headerText="Opções">
+				<!-- CHAMA DIALOG PARA ALTERAR -->
+				<p:commandButton icon="ui-icon-pencil" process="@this"
+					action="#{contaMB.prepararEdicao()}" update="mainContent">
+					<f:setPropertyActionListener value="#{contas}"
+						target="#{contaMB.contaSelecionado}" />
+				</p:commandButton>
+
+
+
+				<!-- CHAMA DIALOG PARA APAGAR -->
+				<p:commandButton icon="ui-icon-trash" process="@this"
+					action="#{contaMB.dialogApagar()}">
+					<f:setPropertyActionListener value="#{contas}"
+						target="#{contaMB.contaSelecionado}" />
+				</p:commandButton>
+
+
+			</p:column>
+
+
+			<f:facet name="footer">
+        Total de Contas: #{contaMB.conta_lista.size()}
+    </f:facet>
+
+		</p:dataTable>
+		<p:panel>
+			<p:commandButton value="Novo" action="#{contaMB.prepararNovo}"
+				process="@this" update="pnnovo" />
+
+			<p:commandButton value="Imprimir" />
+		</p:panel>
+
+
+
+		<!-- DIALOG NOVO MOVIMENTO -->
+		<p:dialog widgetVar="dlg_NovaConta" closable="false" draggable="false"
+			resizable="false" header="Dados da Conta" modal="true">
+
+			<h:panelGrid id="pnnovo" columns="1">
+
+				
+				
+				<!-- Tipo de Conta -->
+				<h:outputLabel for="id_tipo" value="Tipo" />
+				<p:selectOneMenu id="id_tipo" value="#{contaMB.conta.tipoConta}"
+					style="width:125px" required="true"
+					requiredMessage="Defina o tipo de conta.">
+					<f:selectItem itemLabel="Selecione" />
+					<f:selectItem itemLabel="CAIXA INTERNO" itemValue="CAIXA INTERNO" />
+					<f:selectItem itemLabel="POUPANÇA" itemValue="POUPANÇA" />
+					<f:selectItem itemLabel="CORRENTE" itemValue="CORRENTE" />
+					<f:selectItem itemLabel="OUTRAS" itemValue="OUTRAS" />
+				</p:selectOneMenu>
+
+				<!-- Nome do Banco -->
+				<h:outputLabel for="id_banco" value="Bancos Cadastrados" />
+				<p:selectOneMenu id="id_banco" value="#{contaMB.conta.nomeBanco}" >
+					<f:selectItem itemLabel="Selecione" itemValue="" />
+					<f:selectItems value="#{bancoMB.nomeBanco}"  />
+				<p:ajax event="change" update="edt_numbanco"/>
+				</p:selectOneMenu>
+
+
+				<!-- Numero do Banco -->
+
+				<p:inputText id="edt_numbanco" value="#{bancoMB.pegaNumBanco()}" />
+
+
+				<!-- Numero da Agencia -->
+				<h:outputText value="Numero Agencia" for="edt_numAgencia" />
+				<p:inputText id="edt_numAgencia" value="#{contaMB.conta.numAgencia}"
+					size="30" title="Informe o numero da agencia"
+					onclick="this.value = '';"
+					onchange="this.value = this.value.toUpperCase();"
+					onmouseover="this.style.backgroundColor = 'yellow';"
+					onmouseout="this.style.backgroundColor = 'white';">
+					<p:tooltip id="toolTipFocus_edt_numAgencia" for="edt_numAgencia"
+						showEvent="focus" hideEvent="blur" />
+				</p:inputText>
+
+				<h:outputText value="Numero Conta" for="edt_numConta" />
+				<p:inputText id="edt_numConta" value="#{contaMB.conta.numConta}"
+					size="30" title="Informe o numero da conta"
+					onclick="this.value = '';"
+					onchange="this.value = this.value.toUpperCase();"
+					onmouseover="this.style.backgroundColor = 'yellow';"
+					onmouseout="this.style.backgroundColor = 'white';">
+
+					<p:tooltip id="toolTipFocus_edt_numConta" for="edt_numConta"
+						showEvent="focus" hideEvent="blur" />
+				</p:inputText>
+
+
+
+			</h:panelGrid>
+			<h:panelGrid columns="2">
+				<p:commandButton value="Gravar" action="#{contaMB.gravar}"
+					update="mainContent" process="@this, pnnovo"
+					onclick="PF('dlg_NovoFluxo').hide();" />
+				<p:commandButton value="Cancelar" update="mainContent"
+					onclick="PF('dlg_NovoFluxo').hide();"
+					action="#{contaMB.cancelar()}" />
+			</h:panelGrid>
+		</p:dialog>
+
+
+
+		<!-- DIALIGO EXCLUIR LANÇAMENTO -->
+		<p:dialog widgetVar="dlg_ApagarConta" closable="false"
+			draggable="false" resizable="false" modal="true">
+			<f:facet name="header">
+				<p:outputLabel value="Deseja Excluir este Fluxo?"></p:outputLabel>
+			</f:facet>
+
+			<f:facet name="footer">
+				<p:commandButton value="Excluir" action="#{contaMB.apagar()}"
+					update="mainContent" process="@this"
+					onclick="PF('dlg_ApagarConta').hide();" />
+
+				<p:commandButton value="Cancelar" update="mainContent"
+					onclick="PF('dlg_ApagarConta').hide();"
+					action="#{contaMB.cancelar()}" />
+			</f:facet>
+		</p:dialog>
+	</ui:define>
+
+
+	<ui:define name="footer">
+
+		<h5 class="titulo">Sistema Financeiro.</h5>
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+html {
+	background-color: #f1f1f1;
+}
+
+.tab{
+	
+	background-color: white;
+	border:none;!important;
+}
+
+
+.ui-panelgrid {
+border: none !important;" 
+}
+
+
+
+/* CENTRALIZA UM OBJETO NA TELA */
+.centrotela {
+	width: 300;
+	height: 200;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -150px;
+}
+
+/* ESTILOS DOS TITULOS DO PANELGRID */
+.panelGrid {
+	color: black;
+	font-weight: bold;
+}
+
+/* ESTILOS DO TITULOS CENTRAL PAGINA INICIAL */
+.tituloCentral {
+	color: black;
+	font-size: 12;
+	font-weight: bold;
+	font-family: sans-serif;
+	width: 400px;
+}
+
+
+
+/* ESTILOS DOS TITULOS PRINCIPAIS DAS PAGINAS */
+.titulo {
+	color: black;
+	font-size: 12;
+	font-weight: bold;
+	font-family: sans-serif;
+}
+
+
+
+
+/* ESTILOS DO HEADER DA TABELA */
+.ui-widget, .ui-widget .ui-widget {
+	font-size: 12px !important;
+}
+
+.ui-datatable-header {
+	background: #20a8ff;
+	color: white;
+}
+
+/* ESTILOS DO FOOTER DA TABELA */
+.ui-datatable-footer {
+	color: red;
+	font-size: 25;
+}

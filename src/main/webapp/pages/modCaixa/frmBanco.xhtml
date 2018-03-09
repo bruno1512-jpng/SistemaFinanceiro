@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/template/templatePadrao.xhtml">
+
+
+
+	<ui:define name="content">
+		<p class="titulo">Bancos Cadastrados</p>
+
+
+		<p:growl id="growl" life="5000" />
+
+		<p:dataTable id="tbbanco" var="bancos" rowIndexVar="item"
+			emptyMessage="Sem dados na tabela." value="#{bancoMB.banco_lista}"
+			paginator="true" paginatorPosition="top" rows="10"
+			sortBy="#{bancos.numBanco}" expandableRowGroups="true">
+
+			<f:facet name="header">Lista de Bancos</f:facet>
+
+			<p:column headerText="Codigo" width="30">
+				<h:outputText value="#{bancos.id}" />
+			</p:column>
+
+
+			<p:column headerText="Numero Banco" width="100">
+				<h:outputText value="#{bancos.numBanco}" />
+			</p:column>
+
+			<p:column headerText="Banco" width="300">
+				<h:outputText value="#{bancos.banco}" />
+			</p:column>
+
+
+
+			<!-- ACOES DA LISTA -->
+			<p:column width="55" headerText="Opções">
+				<!-- CHAMA DIALOG PARA ALTERAR -->
+				<p:commandButton icon="ui-icon-pencil" process="@this"
+					action="#{bancoMB.prepararEdicao()}" update="mainContent">
+					<f:setPropertyActionListener value="#{bancos}"
+						target="#{bancoMB.bancoSelecionado}" />
+				</p:commandButton>
+
+
+
+				<!-- CHAMA DIALOG PARA APAGAR -->
+				<p:commandButton icon="ui-icon-trash" process="@this"
+					action="#{bancoMB.dialogApagar()}">
+					<f:setPropertyActionListener value="#{bancos}"
+						target="#{bancoMB.bancoSelecionado}" />
+				</p:commandButton>
+
+
+			</p:column>
+
+
+			<f:facet name="footer">
+        Total de Bancos: #{bancoMB.banco_lista.size()}
+    </f:facet>
+
+		</p:dataTable>
+		<p:panel>
+			<p:commandButton value="Novo" action="#{bancoMB.prepararNovo()}"
+				process="@this" update="pnnovo" />
+
+			<p:commandButton value="Imprimir" />
+		</p:panel>
+
+
+
+		<!-- DIALOG NOVO MOVIMENTO -->
+		<p:dialog widgetVar="dlg_NovoBanco" closable="false" draggable="false"
+			resizable="false" header="Dados do Banco" modal="true">
+
+			<h:panelGrid id="pnnovo" columns="8">
+
+				<h:outputText value="Numero" for="edt_numBanco" />
+				<p:inputText id="edt_numBanco" value="#{bancoMB.banco.numBanco}"
+					size="4" title="Informe o numero da banco"
+					onclick="this.value = '';"
+					onchange="this.value = this.value.toUpperCase();"
+					onmouseover="this.style.backgroundColor = 'yellow';"
+					onmouseout="this.style.backgroundColor = 'white';">
+
+					<p:tooltip id="toolTipFocus_edt_numBanco" for="edt_numBanco"
+						showEvent="focus" hideEvent="blur" />
+				</p:inputText>
+
+				<!-- Nome do Banco -->
+				<h:outputText value="Nome" for="edt_nomeBanco" />
+				<p:inputText id="edt_nomeBanco" value="#{bancoMB.banco.banco}"
+					size="50" title="Informe o nome do banco"
+					onclick="this.value = '';"
+					onchange="this.value = this.value.toUpperCase();"
+					onmouseover="this.style.backgroundColor = 'yellow';"
+					onmouseout="this.style.backgroundColor = 'white';">
+
+					<p:tooltip id="toolTipFocus_edt_nomeBanco" for="edt_nomeBanco"
+						showEvent="focus" hideEvent="blur" />
+				</p:inputText>
+
+
+			</h:panelGrid>
+			<h:panelGrid columns="2">
+				<p:commandButton value="Gravar" action="#{bancoMB.gravar}"
+					update="mainContent" process="@this, pnnovo"
+					onclick="PF('dlg_NovoBanco').hide();" />
+				<p:commandButton value="Cancelar" update="mainContent"
+					onclick="PF('dlg_NovoBanco').hide();"
+					action="#{bancoMB.cancelar()}" />
+			</h:panelGrid>
+		</p:dialog>
+
+
+
+		<!-- DIALIGO EXCLUIR LANÇAMENTO -->
+		<p:dialog widgetVar="dlg_ApagarBanco" closable="false"
+			draggable="false" resizable="false" modal="true">
+			<f:facet name="header">
+				<p:outputLabel value="Deseja Excluir este Fluxo?"></p:outputLabel>
+			</f:facet>
+
+			<f:facet name="footer">
+				<p:commandButton value="Excluir" action="#{bancoMB.apagar()}"
+					update="mainContent" process="@this"
+					onclick="PF('dlg_ApagarBanco').hide();" />
+
+				<p:commandButton value="Cancelar" update="mainContent"
+					onclick="PF('dlg_ApagarBanco').hide();"
+					action="#{bancoMB.cancelar()}" />
+			</f:facet>
+		</p:dialog>
+	</ui:define>
+
+
+	<ui:define name="footer">
+
+		<h5 class="titulo">Sistema Financeiro.</h5>
+	</ui:define>
+
+</ui:composition>

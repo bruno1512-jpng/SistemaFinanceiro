@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+html {
+	background-color: #f1f1f1;
+}
+
+/* CENTRALIZA UM OBJETO NA TELA */
+.centrotela {
+	width: 300px;
+	height: 300px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -50px;
+	margin-left: -50px;
+}
+
+/* ESTILOS DOS TITULOS DO PANELGRID */
+.panelGrid {
+	color: black;
+	font-weight: bold;
+}
+
+/* ESTILOS DO TITULOS CENTRAL PAGINA INICIAL */
+.tituloCentral {
+	color: black;
+	font-size: 12;
+	font-weight: bold;
+	font-family: sans-serif;
+	width: 400px;
+}
+
+
+
+/* ESTILOS DOS TITULOS PRINCIPAIS DAS PAGINAS */
+.titulo {
+	color: black;
+	font-size: 12;
+	font-weight: bold;
+	font-family: sans-serif;
+}
+
+
+
+
+/* ESTILOS DO HEADER DA TABELA */
+.ui-widget, .ui-widget .ui-widget {
+	font-size: 12px !important;
+}
+
+.ui-datatable-header {
+	/* background: #20a8ff; */
+	/* color: white; */
+}
+
+/* ESTILOS DO FOOTER DA TABELA */
+.ui-datatable-footer {
+	color: red;
+	font-size: 25;
+}

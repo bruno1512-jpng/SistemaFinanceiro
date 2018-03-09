@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>SISFIN - Sist. Financeiro</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<!-- define o arquivo JS -->
+	<h:outputScript library="js" name="script.js" target="head" />
+
+	<!-- define o arquivo CSS -->
+	<h:outputStylesheet library="css" name="estilos.css" />
+</h:head>
+
+<!-- Template -->
+<h:body>
+
+
+
+	<!-- Posição do Menu -->
+	<h:form id="mainContent">
+
+
+
+		<!-- Menu Principal -->
+		<p:menubar autoDisplay="true">
+
+			<p:menuitem value="Início" url="/index.xhtml" />
+
+			<p:submenu label="Contas">
+				<p:menuitem value="Cadastrar Banco"
+					url="/pages/modCaixa/frmBanco.xhtml" />
+				<p:menuitem value="Cadastrar Conta"
+					url="/pages/modCaixa/frmConta.xhtml" />
+			</p:submenu>
+
+			<p:submenu label="Movimento Caixa">
+				<p:menuitem value="Fluxo de Caixa"
+					url="/pages/modCaixa/frmFluxoCaixa.xhtml" />
+				<p:menuitem value="Livro Caixa"
+					url="/pages/modCaixa/frmLivroCaixa.xhtml" />
+			</p:submenu>
+
+			<p:menuitem value="Sobre" url="/pages/sobre.xhtml" />
+
+			<p:menuitem value="Sair" url="/adm/pages/logout.xhtml" />
+
+		</p:menubar>
+
+
+		<!-- todo conteudo do ui composit vem aqui automaticamente -->
+		<ui:insert name="content" />
+		<ui:insert name="footer" />
+	</h:form>
+</h:body>
+</html>
