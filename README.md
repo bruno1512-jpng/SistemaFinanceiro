@@ -8,7 +8,7 @@
  <body>
 
 <h3>Projeto SISFIN - Sistema Financeiro.</h3>
-<h4>Sistema completo dividido em modulos, utilizando tecnologia JPA, Hibernate e Primefaces</h4>
+<h4>Sistema completo dividido em modulos, utilizando tecnologias JPA, Hibernate e Primefaces</h4>
 
 
 <p>Etapa Atual:</p>
