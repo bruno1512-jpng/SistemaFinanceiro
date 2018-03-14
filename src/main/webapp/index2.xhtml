@@ -1,15 +1,43 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	template="/template/templatePadrao.xhtml">
-	<ui:define name="content">
-		<div id="divCentro" class="centrotela">
-			<p class="tituloCentral ">SISTEMA FINANCEIRO</p>
-			<p class="titulo">Ver 1.0</p>
-		</div>
-	</ui:define>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="UTF-8"/>
+	<title>Seleção de cliente</title>
 	
-</ui:composition>
+	
+</h:head>
+<h:body>
+
+	<h:form>
+    	<div style="margin-top: 5px; margin-bottom: 20px">
+    		<p:inputText id="conta_" size="40" value="#{caixaMB.nome_conta_pesquisa}"/>
+    		
+    		<p:spacer width="10px"/>
+    		
+    		<p:commandButton value="Pesquisar" action="#{caixaMB.pesquisar()}" update="@form" />
+    	</div>
+    	
+    	<p:dataTable value="#{caixaMB.movimentosFiltradosPorConta}" var="movimentos"
+    		emptyMessage="Nenhum cliente encontrado." rows="10"
+    		paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
+    		
+    		<p:column headerText="ID" style="text-align: center; width: 40px">
+    			<h:outputText value="#{movimentos.id}" />
+    		</p:column>
+    		<p:column headerText="conta">
+    			<h:outputText value="#{movimentos.conta}" />
+    		</p:column>
+    		<p:column style="width: 50px; text-align: center">
+    			<p:commandButton icon="ui-icon-check" title="Selecionar"
+    				action="#{selecaoClienteBean.selecionar(cliente)}"
+    				process="@this" />
+    		</p:column>
+    		
+    	</p:dataTable>
+	</h:form>
+
+</h:body>
+</html>

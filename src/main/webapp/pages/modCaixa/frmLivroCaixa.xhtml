@@ -26,6 +26,12 @@
 				<h:outputText value="#{movimentos.id}" />
 			</p:column>
 
+			<p:column headerText="Conta" width="40">
+
+				<h:outputText value="#{movimentos.conta}" />
+			</p:column>
+
+
 
 			<p:column headerText="Data" width="70">
 				<h:outputText value="#{movimentos.data}" />
@@ -37,20 +43,23 @@
 				<h:outputText value="#{movimentos.tipo}" />
 			</p:column>
 
-			<p:column headerText="Descrição do lançamento" width="350">
+			
+			<p:column headerText="Fluxo " width="280">
+				<h:outputText value="#{movimentos.fluxocaixa}" />
+			</p:column>
+			
+			<p:column headerText="Descrição do Lançamento" width="300">
 				<h:outputText value="#{movimentos.descricao}" />
 			</p:column>
 
-			<p:column headerText="Fluxo " width="350">
-				<h:outputText value="#{movimentos.fluxocaixa}" />
-			</p:column>
+			
 
-			<p:column headerText="Valor" width="50"
+			<p:column headerText="Valor" width="70"
 				style="#{movimentos.tipo == 'C' ? 'background-color: #b0e0a3; color:black ; font-weight: bold ':'' or movimentos.tipo == 'D' ? 'background-color: #f4a4a4; color:black; font-weight: bold' :''}">
 				<h:outputText value="#{movimentos.valor}" />
 			</p:column>
 
-			<p:column headerText="Saldo" width="50">
+			<p:column headerText="Saldo" width="70">
 				<h:outputText value="#{movimentos.saldo}" />
 			</p:column>
 
@@ -85,7 +94,7 @@
 			<p:commandButton value="Novo" action="#{caixaMB.prepararNovo}"
 				process="@this" update="pnnovo" />
 
-			<p:commandButton value="Imprimir" />
+			<p:commandButton value="Voltar"  onclick="window.history.back();" />
 		</p:panel>
 
 
@@ -95,16 +104,20 @@
 			draggable="false" resizable="false" header="Dados Lançamento"
 			modal="true" focus="id_conta">
 
-			<h:panelGrid id="pnnovo" columns="2" class="ui-g" >
+			<h:panelGrid id="pnnovo" columns="2" class="ui-g">
 
 
+				<!-- Codigo ID do movimento -->
+				<h:outputText />
+				<h:outputText value="Código" for="edt_cod" />
+				<p:inputText id="edt_cod" value="#{caixaMB.caixa.id}" size="4"  disabled="true"/>
 
 				<!-- Nome da Conta -->
 				<h:outputLabel />
 				<h:outputLabel for="id_conta" value="Contas" />
 				<p:selectOneMenu id="id_conta" value="#{caixaMB.caixa.conta}">
 					<f:selectItem itemLabel="Selecione" itemValue="" />
-					<f:selectItems value="#{contaMB.nomeConta}"  />
+					<f:selectItems value="#{contaMB.nomeConta}" />
 
 				</p:selectOneMenu>
 

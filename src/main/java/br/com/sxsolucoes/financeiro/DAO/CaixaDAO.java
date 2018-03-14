@@ -9,8 +9,6 @@ import javax.persistence.Persistence;
 
 import br.com.sxsolucoes.financeiro.entity.Caixa;
 
-
-
 public class CaixaDAO {
 
 	EntityManager manager;
@@ -56,4 +54,10 @@ public class CaixaDAO {
 		return manager.find(Caixa.class, caixa.getId());
 	}
 
+	public List<Caixa> findByConta(String conta) {
+		
+		return manager.createQuery("from Caixa where conta like :conta_pesquisada", Caixa.class)
+				.setParameter("conta_pesquisada", "%" + conta + "%")
+				.getResultList();
+	}
 }

@@ -42,14 +42,7 @@
 			<version>1.0.10</version>
 		</dependency>
   
-		
-		
-
-	
-		
-		
-		
-		<!-- HIBERNATE -->
+	<!-- HIBERNATE -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
@@ -65,9 +58,13 @@
 			<groupId>org.hibernate.common</groupId>
 			<artifactId>hibernate-commons-annotations</artifactId>
 			<version>5.0.1.Final</version>
-
-
 		</dependency>
+<!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api -->
+<dependency>
+    <groupId>org.hibernate.javax.persistence</groupId>
+    <artifactId>hibernate-jpa-2.1-api</artifactId>
+    <version>1.0.2.Final</version>
+</dependency>
 
 
 
@@ -79,10 +76,11 @@
 </dependency>
 
 <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+
 <dependency>
     <groupId>org.postgresql</groupId>
     <artifactId>postgresql</artifactId>
-    <version>42.1.4</version>
+    <version>42.2.1</version>
 </dependency>
 
 	</dependencies>
