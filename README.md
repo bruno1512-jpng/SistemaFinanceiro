@@ -18,7 +18,7 @@
 
 <br>
 <h4>ScreenShots</h4>
-  
+  <div>
         <img src="https://github.com/sergiosalomao/SistemaFinanceiro/blob/master/screenshots/screen1.png">
         <br>
         <img src="https://github.com/sergiosalomao/SistemaFinanceiro/blob/master/screenshots/screen2.png">
@@ -26,7 +26,7 @@
         <img src="https://github.com/sergiosalomao/SistemaFinanceiro/blob/master/screenshots/screen3.png">
         <br>
         <img src="https://github.com/sergiosalomao/SistemaFinanceiro/blob/master/screenshots/screen4.png">
-        
+</div>        
    
 </body>
 </html>
